@@ -29,27 +29,16 @@ jobs:
         with:
           validate-wrappers: false
 
-      - name: Verify Wrapper and Build
+      - name: Force Regenerate Wrapper and Build
         run: |
-          echo "=== 1. 查看当前项目根目录 ==="
-          ls -la
+          echo "=== 1. 强制在 CI 服务器上就地生成官方纯净的 Wrapper ==="
+          # 这行命令会强制下载官方标准的 gradle-wrapper.jar（约 50KB+），覆盖掉仓库里损坏的 32KB 文件
+          gradle wrapper --gradle-version 8.7 --distribution-type bin
           
-          echo "=== 2. 检查 gradle/wrapper 目录 ==="
-          if [ -d "gradle/wrapper" ]; then
-            ls -la gradle/wrapper
-          else
-            echo "❌ 警告：gradle/wrapper 目录在 CI 环境中不存在！"
-          fi
+          echo "=== 2. 验证全新生成的 JAR 包大小 ==="
+          ls -lh gradle/wrapper/gradle-wrapper.jar
           
-          echo "=== 3. 校验 gradle-wrapper.jar 状态 ==="
-          if [ -f "gradle/wrapper/gradle-wrapper.jar" ]; then
-            echo "✅ 找到 jar 包，实际大小为："
-            ls -lh gradle/wrapper/gradle-wrapper.jar
-          else
-            echo "❌ 严重错误：在 gradle/wrapper/ 下找不到 gradle-wrapper.jar 文件！"
-          fi
-
-          echo "=== 4. 开始执行 Android 编译 ==="
+          echo "=== 3. 开始执行 Android 编译 ==="
           ./gradlew assembleDebug
 
       - name: Upload Debug APK
