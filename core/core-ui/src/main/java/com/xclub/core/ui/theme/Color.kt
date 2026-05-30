@@ -1,0 +1,27 @@
+package com.xclub.core.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+val XclubPrimary = Color(0xFF1A73E8)
+val XclubOnPrimary = Color(0xFFFFFFFF)
+val XclubPrimaryContainer = Color(0xFFD3E3FD)
+val XclubOnPrimaryContainer = Color(0xFF041E49)
+val XclubSecondary = Color(0xFF5F6368)
+val XclubOnSecondary = Color(0xFFFFFFFF)
+val XclubSecondaryContainer = Color(0xFFE8EAED)
+val XclubOnSecondaryContainer = Color(0xFF1C1B1F)
+val XclubBackground = Color(0xFFFBFCFE)
+val XclubOnBackground = Color(0xFF1C1B1F)
+val XclubSurface = Color(0xFFFFFFFF)
+val XclubOnSurface = Color(0xFF1C1B1F)
+val XclubDarkPrimary = Color(0xFFA8C7FA)
+val XclubDarkOnPrimary = Color(0xFF062E6F)
+val XclubDarkPrimaryContainer = Color(0xFF0842A0)
+val XclubDarkOnPrimaryContainer = Color(0xFFD3E3FD)
+val XclubDarkBackground = Color(0xFF1C1B1F)
+val XclubDarkOnBackground = Color(0xFFE6E1E5)
+val XclubDarkSurface = Color(0xFF2B2930)
+val XclubDarkOnSurface = Color(0xFFE6E1E5)
+val XclubExpense = Color(0xFFD93025)
+val XclubIncome = Color(0xFF1E8E3E)
+val XclubSaving = Color(0xFFFA7B17)
