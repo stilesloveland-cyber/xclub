@@ -30,3 +30,4 @@ sync-server/build/
 # Gradle wrapper (will be regenerated)
 gradle/wrapper/gradle-wrapper-main-*.jar
 gradle/wrapper/gradle-wrapper-shared-*.jar
+!gradle/wrapper/gradle-wrapper.jar
