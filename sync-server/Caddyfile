@@ -1,0 +1,8 @@
+{$DOMAIN:} {
+    reverse_proxy sync-server:5555
+}
+
+:5555 {
+    reverse_proxy sync-server:5555
+    tls internal
+}

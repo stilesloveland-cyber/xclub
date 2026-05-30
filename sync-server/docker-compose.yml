@@ -1,0 +1,36 @@
+services:
+  sync-server:
+    build: .
+    ports:
+      - "${PORT:-5555}:5555"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=5555
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    depends_on:
+      - sync-server
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN:-}
+    profiles:
+      - cloudflare
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
