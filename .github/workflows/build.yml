@@ -30,9 +30,24 @@ jobs:
         with:
           validate-wrappers: false
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        - name: Verify Wrapper and Build
+        run: |
+          echo "=== 1. 查看当前目录下的所有文件（包含隐藏文件） ==="
+          ls -la
+          
+          echo "=== 2. 查看 gradle/wrapper 目录结构 ==="
+          ls -la gradle/wrapper || echo "❌ 警告：gradle/wrapper 目录不存在！"
+          
+          echo "=== 3. 检查 jar 包是否存在及其实际大小 ==="
+          if [ -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+            echo "✅ 找到 jar 包，文件大小为："
+            ls -lh gradle/wrapper/gradle-wrapper.jar
+          else
+            echo "❌ 严重错误：在 gradle/wrapper/ 下根本找不到 gradle-wrapper.jar！"
+          fi
 
+          echo "=== 4. 开始执行编译 ==="
+          ./gradlew assembleDebug
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
