@@ -18,7 +18,7 @@ core-ktx = "1.15.0"
 activity-compose = "1.9.3"
 lifecycle = "2.8.7"
 ktor = "3.0.3"
-logback = "1.4.14"
+sqlite = "2.6.2"
 
 [libraries]
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -38,7 +38,8 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 sqlcipher = { group = "net.zetetic", name = "sqlcipher-android", version.ref = "sqlcipher" }
-sqlite-framework = { group = "androidx.sqlite", name = "sqlite-framework", version = "2.4.0" }
+sqlite-framework = { group = "androidx.sqlite", name = "sqlite-framework", version.ref = "sqlite" }
+sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }

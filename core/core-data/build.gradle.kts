@@ -30,6 +30,7 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.sqlcipher)
     implementation(libs.sqlite.framework)
+    implementation(libs.sqlite)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.kotlinx.serialization.json)
