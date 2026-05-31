@@ -14,7 +14,7 @@ fun Route.updateRoutes() {
                 return@get
             }
 
-            val latestApk = updatesDir.listFiles { f -> f.extension == "apk" }?.maxByOrNull { f.nameWithoutExtension.toLongOrNull() ?: 0 }
+            val latestApk = updatesDir.listFiles { f -> f.extension == "apk" }?.maxByOrNull { it.nameWithoutExtension.toLongOrNull() ?: 0 }
             if (latestApk == null) {
                 call.respond(UpdateInfo(versionCode = 0, versionName = "", changelog = "", downloadUrl = ""))
                 return@get

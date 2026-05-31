@@ -1,9 +1,11 @@
 plugins {
-    // 【核心修改】改用别名引用，让它继承根目录和 toml 中定义的统一 Kotlin 版本
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
     application
 }
+
+version = "1.0.0"
+group = "com.xclub"
 
 application {
     mainClass.set("com.xclub.sync.ApplicationKt")
@@ -27,6 +29,6 @@ tasks.jar {
         attributes["Main-Class"] = "com.xclub.sync.ApplicationKt" 
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    // 兼容新版 Gradle 的胖胖包（Fat JAR）打包逻辑
+    archiveClassifier.set("all")
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
