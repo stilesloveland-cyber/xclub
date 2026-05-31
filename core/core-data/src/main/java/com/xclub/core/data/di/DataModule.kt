@@ -9,7 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import net.zetetic.android.database.sqlcipher.SupportFactory
+import net.sqlcipher.database.SupportFactory
 import java.util.UUID
 import javax.inject.Singleton
 
