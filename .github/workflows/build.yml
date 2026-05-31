@@ -27,19 +27,17 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
+          gradle-version: "8.10"
           validate-wrappers: false
 
-      - name: Force Regenerate Wrapper and Build
+      - name: Force Regenerate Wrapper
         run: |
-          echo "=== 1. 强制在 CI 服务器上就地生成官方纯净的 Wrapper ==="
-          # 这行命令会强制下载官方标准的 gradle-wrapper.jar（约 50KB+），覆盖掉仓库里损坏的 32KB 文件
           gradle wrapper --gradle-version 8.10 --distribution-type bin
-          
-          echo "=== 2. 验证全新生成的 JAR 包大小 ==="
+          chmod +x gradlew
           ls -lh gradle/wrapper/gradle-wrapper.jar
-          
-          echo "=== 3. 开始执行 Android 编译 ==="
-          ./gradlew assembleDebug
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4

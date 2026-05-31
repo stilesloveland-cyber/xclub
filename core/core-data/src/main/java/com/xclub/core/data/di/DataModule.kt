@@ -9,7 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import net.sqlcipher.database.SupportFactory
+import net.zetetic.android.database.sqlcipher.SupportFactory
 import java.util.UUID
 import javax.inject.Singleton
 
@@ -29,7 +29,7 @@ object DataModule {
             "xclub.db"
         )
             .openHelperFactory(factory)
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigrationFrom()
             .build()
     }
 

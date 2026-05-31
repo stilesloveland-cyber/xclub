@@ -9,25 +9,22 @@
 .cxx
 local.properties
 
-# Kotlin
 *.class
 
-# Android build outputs
 */build/
 app/build/
 core/*/build/
 feature/*/build/
 sync-server/build/
 
-# APK
 *.apk
 *.aab
 
-# Keystore
 *.jks
 *.keystore
 
-# Gradle wrapper (will be regenerated)
 gradle/wrapper/gradle-wrapper-main-*.jar
 gradle/wrapper/gradle-wrapper-shared-*.jar
 !gradle/wrapper/gradle-wrapper.jar
+
+.superpowers/
