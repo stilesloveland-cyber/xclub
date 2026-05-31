@@ -36,17 +36,16 @@ CI 构建产物（每次 push 到 main 分支自动构建）：
 
 ### 方式一：Docker 一键部署（推荐）
 
-#### 1. 下载服务器 JAR
+#### 1. 克隆仓库
 
-CI 构建产物：
-- [xclub-sync-server](https://github.com/stilesloveland-cyber/xclub/releases) — Sync Server JAR
-
-下载后放入 `/sync-server/` 目录。
+```bash
+git clone https://github.com/stilesloveland-cyber/xclub.git
+cd xclub
+```
 
 #### 2. 运行部署向导
 
 ```bash
-cd sync-server
 bash deploy.sh
 ```
 
@@ -64,13 +63,12 @@ bash deploy.sh
 ### 方式二：手动 Docker 部署
 
 ```bash
-cd sync-server
+# 1. 克隆仓库
+git clone https://github.com/stilesloveland-cyber/xclub.git
+cd xclub
 
-# 拉取镜像（需要先放入 JAR）
-docker build -t xclub-sync-server .
-
-# 启动服务
-PORT=5555 docker compose up -d
+# 2. 构建并启动
+PORT=5555 docker compose up -d --build
 ```
 
 ### 环境变量
@@ -103,17 +101,19 @@ curl http://localhost:5555/health
 ## 目录结构
 
 ```
-sync-server/
-├── build.gradle.kts      # Gradle 构建配置
-├── Dockerfile            # Docker 镜像定义
-├── docker-compose.yml    # Docker Compose 配置
-├── Caddyfile             # Caddy 反向代理配置
-├── deploy.sh             # 可视化部署向导
-└── src/main/kotlin/      # Ktor 服务端源码
-    ├── Application.kt    # 入口
-    ├── routes/           # 路由（认证/同步/更新）
-    ├── database/         # SQLite 数据库
-    └── model/            # 数据模型
+xclub/
+├── .github/workflows/  # CI/CD
+│   ├── build.yml       # 普通构建
+│   └── release.yml     # 发布到 GitHub Release
+├── app/                # Android App
+├── core/               # 核心模块（common/data/sync/ui）
+├── feature/            # 功能模块（web/finance/notes/todo）
+├── sync-server/        # Sync Server 源码
+├── Dockerfile          # 多阶段构建镜像
+├── docker-compose.yml  # Docker Compose
+├── Caddyfile           # Caddy 反向代理
+├── deploy.sh           # 可视化部署向导
+└── README.md
 ```
 
 ## API 端点
